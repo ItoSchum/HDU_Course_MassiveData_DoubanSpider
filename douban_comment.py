@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 import time
 
 #url = 'https://movie.douban.com/subject/26683290/comments'
-url = 'https://movie.douban.com/subject/24773958/comments'
+url = 'https://movie.douban.com/subject/24773958/comments'12
 headers = {
     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.933.400 QQBrowser/9.4.8699.400',
 }
