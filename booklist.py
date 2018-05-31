@@ -23,7 +23,7 @@ def search(word):
     f.write(word + '\n')
     f.close()
     i = 0
-    while i < 100:
+    while i < 30:
         data = requests.get(url, headers=headers)
         soup = BeautifulSoup(data.text, 'lxml')
 

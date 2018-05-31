@@ -1,6 +1,10 @@
 # -*- encoding=UTF-8 -*-
+
 __author__ = 'yuer'
 from Tkinter import *
+from tkinter import messagebox
+import tkinter.messagebox
+import gui2
 
 root = Tk()
 root.geometry('600x400')
@@ -59,7 +63,7 @@ def on_click_first():
         line = f.readline()
 
     f.close()
-    #print tet
+    # print tet
     label['text'] = tet
 
 
@@ -88,9 +92,10 @@ def on_click_next():
         line = f.readline()
 
     f.close()
-    #print tet
+    # print tet
     if not line:
         page = page - 1
+        tkinter.messagebox.showinfo(title='提示', message='已经是最后一页了！')
     label['text'] = tet
 
 
@@ -104,6 +109,7 @@ def on_click_bef():
         page = page - 1
     else:
         page = 1
+        tkinter.messagebox.showinfo(title='提示', message='已经是第一页了！')
     i = 0
     f = open(r'./bookcomment.txt', 'r')
     while i < sum:
@@ -125,13 +131,34 @@ def on_click_bef():
         line = f.readline()
 
     f.close()
-    #print tet
+    # print tet
 
     label['text'] = tet
 
 
+def on_click_clean():
+    global page
+    page = 0;
+    label['text'] = ''
+
+
 def on_click_search():
+    word = text.get()
     print(text.get())
+
+    from booklist import search
+    try:
+        f = open('./booklist.txt', 'r')
+        topic = f.readline().strip('\n')
+        f.close()
+        if topic != word:
+            search(word)
+    except BaseException, e:
+        print(e)
+    else:
+        print ('searching succeed')
+        # tkinter.messagebox.showinfo(title='提示', message='搜索成功！')
+        gui2.lisgui()
 
 
 page = 0
@@ -159,5 +186,9 @@ buttonn = Button(root)
 buttonn['text'] = '下一页'
 buttonn['command'] = on_click_next
 buttonn.pack(side=LEFT)
+clean = Button(root)
+clean['text'] = '清空'
+clean['command'] = on_click_clean
+clean.pack(side=LEFT)
 
-mainloop()
+root.mainloop()

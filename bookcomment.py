@@ -27,7 +27,16 @@ def comment(giveurl):
         # print count[0].get_text().split('全部共')[1].split('条')[0]
         # print comments[4].get_text().strip().replace('\n',' ')
         if i == 0:
-            onclick = pnext[0].get('href')
+            if comments.__len__() == 0:
+                f = open('./bookcomment.txt', 'wb')
+                f.write('暂无评论' + '\n')
+                f.close()
+            try:
+                onclick = pnext[0].get('href')
+            except IndexError, e:
+                print ('已经到底了')
+                print e
+                break
             #print onclick
             url = giveurl + onclick
             f = open('./bookcomment.txt', 'wb')
