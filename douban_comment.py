@@ -14,7 +14,7 @@ headers = {
     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.933.400 QQBrowser/9.4.8699.400',
 }
 i=0
-while i<11:
+while i<20:
     data = requests.get(url, headers=headers)
     soup = BeautifulSoup(data.text, 'lxml')
     # users:用户列表    comments:评论列表
@@ -36,7 +36,12 @@ while i<11:
         print count[0].get_text()
         f.write(count[0].get_text() + '\n')
     else:
-        onclick = pnext[2].get('href')
+        try:
+            onclick = pnext[2].get('href')
+        except IndexError, e:
+            print ('已经到底了')
+            print e
+            break
         #url = 'https://movie.douban.com/subject/26683290/comments' + onclick
         url = 'https://movie.douban.com/subject/24773958/comments' + onclick
         #f = open('./text.txt', 'a')

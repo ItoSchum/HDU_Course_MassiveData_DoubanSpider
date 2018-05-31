@@ -28,7 +28,7 @@ def comment(giveurl):
         # print comments[4].get_text().strip().replace('\n',' ')
         if i == 0:
             onclick = pnext[0].get('href')
-            print onclick
+            #print onclick
             url = giveurl + onclick
             f = open('./bookcomment.txt', 'wb')
             print bookname[0].get_text()+'\n'
@@ -53,6 +53,6 @@ def comment(giveurl):
 
 
 if __name__ == "__main__":
-    print("main")
+    #print("main")
     url = 'https://book.douban.com/subject/1148282/comments/'
     comment(url)
