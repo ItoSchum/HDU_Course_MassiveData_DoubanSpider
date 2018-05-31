@@ -13,7 +13,7 @@ def comment(giveurl):
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.933.400 QQBrowser/9.4.8699.400',
     }
     i = 0
-    while i < 11:
+    while i < 31:
         data = requests.get(url, headers=headers)
         soup = BeautifulSoup(data.text, 'lxml')
         # users:用户列表    comments:评论列表
@@ -54,5 +54,5 @@ def comment(giveurl):
 
 if __name__ == "__main__":
     #print("main")
-    url = 'https://book.douban.com/subject/1148282/comments/'
+    url = 'https://book.douban.com/subject/6709783/comments/'
     comment(url)
