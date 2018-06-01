@@ -175,7 +175,7 @@ if __name__ == "__main__":
     buttons['command'] = on_click_search
     buttons.pack()
 
-    label = Label(root, width=70, height=15, wraplength=600, justify='left', anchor='w')
+    label = Label(root, width=70, height=15, wraplength=500, justify='left', anchor='w')
     label.pack()
     button = Button(root)
     button['text'] = '第一页'
