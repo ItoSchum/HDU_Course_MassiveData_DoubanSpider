@@ -27,10 +27,21 @@ def comment(giveurl):
         # print count[0].get_text().split('全部共')[1].split('条')[0]
         # print comments[4].get_text().strip().replace('\n',' ')
         if i == 0:
-            if comments.__len__() == 0:
-                f = open('./bookcomment.txt', 'wb')
-                f.write('暂无评论' + '\n')
-                f.close()
+            f = open('./bookcomment.txt', 'wb')
+            print bookname[0].get_text()+'\n'
+            print count[0].get_text()+ '\n'
+            f.write(bookname[0].get_text() + '\n')
+            f.write(count[0].get_text() + '\n')
+            f.close()
+
+        f = open('./bookcomment.txt', 'a')
+        # f.write(count[0].get_text()+'\n')
+        for index, item in enumerate(comments):
+            print users[index].get_text() + ':' + item.get_text().strip().strip('\n') + '\n'
+            f.write(users[index].get_text() + ':' + item.get_text().strip().replace('\n', ' ') + '\n\n')
+        f.close()
+
+        if i == 0:
             try:
                 onclick = pnext[0].get('href')
             except IndexError, e:
@@ -39,11 +50,6 @@ def comment(giveurl):
                 break
             #print onclick
             url = giveurl + onclick
-            f = open('./bookcomment.txt', 'wb')
-            print bookname[0].get_text()+'\n'
-            print count[0].get_text()+ '\n'
-            f.write(bookname[0].get_text() + '\n')
-            f.write(count[0].get_text() + '\n')
         else:
             try:
                 onclick = pnext[2].get('href')
@@ -52,12 +58,6 @@ def comment(giveurl):
                 print e
                 break
             url = giveurl + onclick
-            f = open('./bookcomment.txt', 'a')
-        # f.write(count[0].get_text()+'\n')
-        for index, item in enumerate(comments):
-            print users[index].get_text() + ':' + item.get_text().strip().strip('\n') + '\n'
-            f.write(users[index].get_text() + ':' + item.get_text().strip().replace('\n', ' ') + '\n\n')
-        f.close()
         i = i + 1
 
 

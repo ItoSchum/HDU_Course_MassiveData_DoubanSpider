@@ -29,6 +29,16 @@ def search(word):
 
         booknames = soup.select('li.subject-item > div.info > h2 > a')
         pn = soup.select('span.next > a')
+        if booknames.__len__() == 0 and i == 0:
+            f = open('./booklist.txt', 'a')
+            f.write('暂无评论' + '\n')
+            f.close()
+
+        f = open('./booklist.txt', 'a')
+        for index, item in enumerate(booknames):
+            print item.get('title').strip().strip('\n') + ' : ' + item.get('href') + '\n'
+            f.write(item.get('title').strip().strip('\n') + '\n' + item.get('href').strip().replace('\n', ' ') + '\n')
+
         try:
             # print(pn[0].get('href'))
             url = 'https://book.douban.com' + pn[0].get('href')
@@ -36,10 +46,6 @@ def search(word):
             print(e)
             print ('已经到底了')
             break
-        f = open('./booklist.txt', 'a')
-        for index, item in enumerate(booknames):
-            print item.get('title').strip().strip('\n') + ' : ' + item.get('href') + '\n'
-            f.write(item.get('title').strip().strip('\n') + '\n' + item.get('href').strip().replace('\n', ' ') + '\n')
         f.close()
         i = i + 1
 
