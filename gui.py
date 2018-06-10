@@ -4,15 +4,16 @@ __author__ = 'yuer'
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
+import Tkinter as tk
 from Tkinter import *
 from tkinter import messagebox
 import tkinter.messagebox
 import gui2
 if __name__ == "__main__":
     root = Tk()
-    root.geometry('600x400')
-    root.title('yuer search')
-    root.iconbitmap('./yuer_logo.ico')
+    root.geometry('800x600')
+    root.title('Book Comment Search')
+    root.iconbitmap('./douban.png')
 
 
     def hello():
@@ -20,7 +21,7 @@ if __name__ == "__main__":
 
 
     def about():
-        label['text'] = "开发者感谢名单\nyuer Creater\n"
+        label['text'] = "DEVELOPERS\nCreaters\n"
 
     menubar = Menu(root)
 
@@ -82,7 +83,7 @@ if __name__ == "__main__":
         line = f.readline()
         if line == '\n':
             line = f.readline()
-        tet = 'page ' + str(page) + ' research:\n'
+        tet = 'Page ' + str(page) + ' Research:\n'
         j = 0
         while line and j < 5:
             # print line,
@@ -98,7 +99,7 @@ if __name__ == "__main__":
         # print tet
         if not line:
             page = page - 1
-            tkinter.messagebox.showinfo(title='提示', message='已经是最后一页了！')
+            tkinter.messagebox.showinfo(title='Attention', message='Already Last Page')
         label['text'] = tet
 
 
@@ -112,7 +113,7 @@ if __name__ == "__main__":
             page = page - 1
         else:
             page = 1
-            tkinter.messagebox.showinfo(title='提示', message='已经是第一页了！')
+            tkinter.messagebox.showinfo(title='Attention', message='Already First Page')
         i = 0
         f = open(r'./bookcomment.txt', 'r')
         while i < sum:
@@ -121,7 +122,7 @@ if __name__ == "__main__":
         line = f.readline()
         if line == '\n':
             line = f.readline()
-        tet = 'page ' + str(page) + ' research:\n'
+        tet = 'Page ' + str(page) + ' Search:\n'
         j = 0
         while line and j < 5:
             # print line,
@@ -159,38 +160,39 @@ if __name__ == "__main__":
         except BaseException, e:
             print(e)
         else:
-            print ('searching succeed')
+            print ('Searching Succeeded')
             # tkinter.messagebox.showinfo(title='提示', message='搜索成功！')
             gui2.lisgui()
 
 
     page = 0
     text = StringVar()
-    text.set('Search to what?')
+    text.set('Searching Tag Input')
     entry = Entry(root)
     entry['textvariable'] = text
     entry.pack()
     buttons = Button(root)
-    buttons['text'] = '搜索'
+    buttons['text'] = 'Search'
     buttons['command'] = on_click_search
     buttons.pack()
 
     label = Label(root, width=70, height=15, wraplength=500, justify='left', anchor='w')
     label.pack()
+    
     button = Button(root)
-    button['text'] = '第一页'
+    button['text'] = 'First Page'
     button['command'] = on_click_first
     button.pack(side=LEFT)
     buttonb = Button(root)
-    buttonb['text'] = '上一页'
+    buttonb['text'] = 'Previous Page'
     buttonb['command'] = on_click_bef
     buttonb.pack(side=LEFT)
     buttonn = Button(root)
-    buttonn['text'] = '下一页'
+    buttonn['text'] = 'Next Page'
     buttonn['command'] = on_click_next
     buttonn.pack(side=LEFT)
     clean = Button(root)
-    clean['text'] = '清空'
+    clean['text'] = 'Clear Up'
     clean['command'] = on_click_clean
     clean.pack(side=LEFT)
 

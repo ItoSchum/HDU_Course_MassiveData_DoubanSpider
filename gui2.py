@@ -2,8 +2,8 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
+import Tkinter as tk
 from Tkinter import *
-import tkinter as tk
 from tkinter import messagebox
 
 def lisgui():
@@ -20,8 +20,8 @@ def lisgui():
         page = 1
         f = open(r'./booklist.txt', 'r')
         line = f.readline()
-        tet = 'page ' + str(page) + ' research:\n'
-        label['text'] = '搜索完毕，请选择搜索结果查看短评\n' + tet
+        tet = 'Page ' + str(page) + ':\n'
+        label['text'] = 'Searching Complete\nChoose Items for Comments\n' + tet
         j = 1
         u.url1 = ''
         u.url2 = ''
@@ -75,8 +75,8 @@ def lisgui():
             line = f.readline()
             i = i + 1
 
-        tet = 'page ' + str(page) + ' research:\n'
-        label['text'] = '搜索完毕，请选择搜索结果查看短评\n' + tet
+        tet = 'Page ' + str(page) + ':\n'
+        label['text'] = 'Searching Complete\nChoose Items for Comments\n' + tet
         j = 1
         u.url1 = ''
         u.url2 = ''
@@ -121,7 +121,7 @@ def lisgui():
         # print tet
         if not line:
             page = page - 1
-            tk.messagebox.showinfo(title='提示', message='已经是最后一页了！')
+            tk.messagebox.showinfo(title='Attention', message='Already First Page')
 
     def on_click_bef():
         global page
@@ -133,15 +133,15 @@ def lisgui():
             page = page - 1
         else:
             page = 1
-            tk.messagebox.showinfo(title='提示', message='已经是第一页了！')
+            tk.messagebox.showinfo(title='Attention', message='Already Last Page')
         i = 0
         f = open(r'./booklist.txt', 'r')
         line = f.readline()
         while i < sum:
             line = f.readline()
             i = i + 1
-        tet = 'page ' + str(page) + ' research:\n'
-        label['text'] = '搜索完毕，请选择搜索结果查看短评\n' + tet
+        tet = 'Page ' + str(page) + ':\n'
+        label['text'] = 'Searching Complete\nChoose Items for Comments\n' + tet
         j = 1
         u.url1 = ''
         u.url2 = ''
@@ -187,62 +187,62 @@ def lisgui():
     page = 0
     u = ul
     window = tk.Tk()
-    window.geometry('500x300')
-    window.title('yuer select book\'s topic')
-    window.iconbitmap('./yuer_logo.ico')
-    label = tk.Label(window, text='搜索完毕，请选择搜索结果查看短评\n')
+    window.geometry('500x400')
+    window.title('Book Comment Search\'s Topic')
+    window.iconbitmap('./douban.png')
+    label = tk.Label(window, text='Searching Complete\nChoose Items for Comments\n')
     label.pack()
 
     def hit1():
         trueurl = u.url1 + 'comments/'
         comment(trueurl)
-        tk.messagebox.showinfo(title='提示', message='载入完毕')
+        tk.messagebox.showinfo(title='Attention', message='Comments Loaded')
         window.destroy()
 
     def hit2():
         trueurl = u.url2 + 'comments/'
         comment(trueurl)
-        tk.messagebox.showinfo(title='提示', message='载入完毕')
+        tk.messagebox.showinfo(title='Attention', message='Comments Loaded')
         window.destroy()
 
     def hit3():
         trueurl = u.url3 + 'comments/'
         comment(trueurl)
-        tk.messagebox.showinfo(title='提示', message='载入完毕')
+        tk.messagebox.showinfo(title='Attention', message='Comments Loaded')
         window.destroy()
 
     def hit4():
         trueurl = u.url4 + 'comments/'
         comment(trueurl)
-        tk.messagebox.showinfo(title='提示', message='载入完毕')
+        tk.messagebox.showinfo(title='Attention', message='Comments Loaded')
         window.destroy()
 
     def hit5():
         trueurl = u.url5 + 'comments/'
         comment(trueurl)
-        tk.messagebox.showinfo(title='提示', message='载入完毕')
+        tk.messagebox.showinfo(title='Attention', message='Comments Loaded')
         window.destroy()
 
-    a1 = Button(window, text='      ', command=hit1)
+    a1 = Button(window, width = 30, height = 2, text='      ', command=hit1)
     a1.pack()
-    a2 = Button(window, text='      ', command=hit2)
+    a2 = Button(window, width = 30, height = 2, text='      ', command=hit2)
     a2.pack()
-    a3 = Button(window, text='      ', command=hit3)
+    a3 = Button(window, width = 30, height = 2, text='      ', command=hit3)
     a3.pack()
-    a4 = Button(window, text='      ', command=hit4)
+    a4 = Button(window, width = 30, height = 2, text='      ', command=hit4)
     a4.pack()
-    a5 = Button(window, text='      ', command=hit5)
+    a5 = Button(window, width = 30, height = 2, text='      ', command=hit5)
     a5.pack()
     button = Button(window)
-    button['text'] = '第一页'
+    button['text'] = 'First Page'
     button['command'] = on_click_first
     button.pack(side=LEFT)
     buttonb = Button(window)
-    buttonb['text'] = '上一页'
+    buttonb['text'] = 'Prev Page'
     buttonb['command'] = on_click_bef
     buttonb.pack(side=LEFT)
     buttonn = Button(window)
-    buttonn['text'] = '下一页'
+    buttonn['text'] = 'Next Page'
     buttonn['command'] = on_click_next
     buttonn.pack(side=LEFT)
     on_click_first()
